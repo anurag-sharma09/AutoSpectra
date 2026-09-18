@@ -1,0 +1,227 @@
+@import './theme.css';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: var(--theme-transition);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Base Transitions for Cards, Panels, Buttons & Containers */
+.cad-panel,
+.stat-card,
+.feature-card,
+.engine-card,
+.navbar-container,
+.footer-container,
+.search-modal,
+.part-info-panel,
+.viewer-controls-bar,
+.toolkit-card,
+.repair-card,
+.knowledge-card,
+.compare-table {
+  transition: var(--theme-transition);
+}
+
+/* Custom Technical CAD Grid Background */
+.cad-grid-bg {
+  background-color: var(--bg-secondary);
+  background-image: 
+    linear-gradient(var(--accent-subtle) 1px, transparent 1px),
+    linear-gradient(90deg, var(--accent-subtle) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.cad-panel {
+  background: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  position: relative;
+  box-shadow: var(--shadow-card);
+}
+
+.cad-panel:hover {
+  border-color: var(--border-hover);
+}
+
+.cad-panel-glow {
+  background: var(--surface-card);
+  border: 1px solid var(--accent-border);
+  box-shadow: var(--shadow-card);
+}
+
+/* Technical HUD Button Styling */
+.btn-cad {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--accent-subtle);
+  border: 1px solid var(--accent-primary);
+  color: var(--accent-primary);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.btn-cad:hover {
+  background: var(--accent-primary);
+  color: #FFFFFF;
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-1px);
+}
+
+.btn-cad-solid {
+  background: var(--accent-primary);
+  color: #FFFFFF;
+  border: 1px solid var(--accent-primary);
+}
+
+.btn-cad-solid:hover {
+  background: var(--accent-hover);
+  color: #FFFFFF;
+  box-shadow: var(--glow-cyan);
+}
+
+.btn-cad-secondary {
+  background: var(--surface-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.btn-cad-secondary:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background: var(--accent-subtle);
+}
+
+/* Common Form Inputs & Selects */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  background-color: var(--surface-input);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  border-radius: 6px;
+  transition: var(--theme-transition);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px var(--accent-subtle);
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* Typography Helpers */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--text-primary);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.text-cyan {
+  color: var(--accent-primary);
+}
+
+.text-red {
+  color: var(--color-danger);
+}
+
+.text-green {
+  color: var(--color-success);
+}
+
+.text-warning {
+  color: var(--color-warning);
+}
+
+.text-dim {
+  color: var(--text-muted);
+}
+
+.badge-cad {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  background: var(--accent-subtle);
+  border: 1px solid var(--accent-border);
+  color: var(--accent-primary);
+  border-radius: 4px;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+/* Page Layout Wrappers */
+.page-container {
+  min-height: calc(100vh - 70px);
+  padding: 30px 40px;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.app-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 20px 16px;
+  }
+}

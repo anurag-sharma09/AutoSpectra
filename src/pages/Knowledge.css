@@ -1,0 +1,225 @@
+.stroke-visualizer-card {
+  padding: 30px;
+  background: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: var(--shadow-card);
+  transition: var(--theme-transition);
+}
+
+.visualizer-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.visualizer-title {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+}
+
+.visualizer-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.stroke-phase-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.phase-btn {
+  padding: 12px;
+  background: var(--surface-input);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.phase-btn:hover {
+  background: var(--accent-subtle);
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+.phase-btn.active {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #FFFFFF;
+}
+
+.selected-phase-box {
+  padding: 20px;
+  background: var(--surface-input);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.phase-box-title {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+}
+
+.phase-box-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.phase-metric {
+  font-size: 0.8rem;
+  color: var(--accent-primary);
+  margin-top: 6px;
+  font-family: var(--font-mono);
+}
+
+.articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.article-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-normal);
+}
+
+.article-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-elevated);
+}
+
+.article-card-header {
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background: var(--surface-card);
+}
+
+.article-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.article-badges {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.read-time {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+}
+
+.article-title {
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+}
+
+.article-summary {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.expand-toggle-btn {
+  background: transparent;
+  border: none;
+  color: var(--accent-primary);
+  cursor: pointer;
+  padding: 8px;
+}
+
+.article-card-body {
+  padding: 24px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formula-box {
+  padding: 14px 18px;
+  background: var(--accent-subtle);
+  border: 1px solid var(--accent-border);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.formula-label {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent-primary);
+}
+
+.article-sections-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.article-section-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--surface-input);
+  padding: 16px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.sec-heading {
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+}
+
+.sec-content {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .stroke-phase-buttons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .article-sections-grid {
+    grid-template-columns: 1fr;
+  }
+}

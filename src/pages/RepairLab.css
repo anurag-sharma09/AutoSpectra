@@ -1,0 +1,336 @@
+.repair-lab-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.repair-sidebar {
+  padding: 16px;
+  background: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: var(--shadow-card);
+  transition: var(--theme-transition);
+}
+
+.repair-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface-input);
+  border: 1px solid var(--border-color);
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: var(--theme-transition);
+}
+
+.repair-search-box:focus-within {
+  border-color: var(--accent-primary);
+}
+
+.repair-search-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  width: 100%;
+}
+
+.symptom-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: calc(100vh - 260px);
+  overflow-y: auto;
+}
+
+.symptom-item-btn {
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  background: var(--surface-input);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-fast);
+}
+
+.symptom-item-btn:hover {
+  background: var(--accent-subtle);
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+.symptom-item-btn.active {
+  background: var(--accent-subtle);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+.symptom-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.symptom-title {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.symptom-cat {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.repair-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.repair-header-card {
+  padding: 24px;
+  background: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: var(--shadow-card);
+  transition: var(--theme-transition);
+}
+
+.repair-header-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.severity-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+}
+
+.severity-badge.critical {
+  background: rgba(217, 74, 74, 0.12);
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+}
+
+.severity-badge.high {
+  background: rgba(217, 154, 43, 0.12);
+  border: 1px solid var(--color-warning);
+  color: var(--color-warning);
+}
+
+.severity-badge.medium {
+  background: var(--accent-subtle);
+  border: 1px solid var(--accent-border);
+  color: var(--accent-primary);
+}
+
+.repair-symptom-title {
+  font-size: 1.6rem;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+}
+
+.repair-symptom-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.flowchart-container {
+  padding: 24px;
+  background: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--shadow-card);
+  transition: var(--theme-transition);
+}
+
+.flowchart-title {
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+}
+
+.flowchart-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.flow-step-card {
+  padding: 16px;
+  background: var(--surface-input);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.flow-step-num {
+  font-size: 0.75rem;
+  color: var(--accent-primary);
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.flow-step-title {
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+}
+
+.flow-sub-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.8rem;
+}
+
+.flow-sub-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.flow-sub-val {
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.repair-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.details-col {
+  padding: 20px;
+  background: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: var(--shadow-card);
+  transition: var(--theme-transition);
+}
+
+.details-col-title {
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+}
+
+.causes-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.causes-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+.tools-tags-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tool-tag {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  background: var(--accent-subtle);
+  border: 1px solid var(--accent-border);
+  color: var(--accent-primary);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+}
+
+.inspection-list {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.safety-warning-banner {
+  padding: 20px;
+  background: rgba(217, 74, 74, 0.08);
+  border: 1px solid var(--color-danger);
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.safety-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.safety-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-danger);
+}
+
+.safety-desc {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+.safety-pro {
+  font-size: 0.8rem;
+  margin-top: 4px;
+  color: var(--color-warning);
+}
+
+@media (max-width: 1024px) {
+  .repair-lab-layout {
+    grid-template-columns: 1fr;
+  }
+  .flowchart-steps-grid, .repair-details-grid {
+    grid-template-columns: 1fr;
+  }
+}

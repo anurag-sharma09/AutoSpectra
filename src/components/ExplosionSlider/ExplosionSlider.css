@@ -1,0 +1,93 @@
+.explosion-slider-panel {
+  padding: 12px 18px;
+  background: var(--bg-hud);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: var(--theme-transition);
+}
+
+.slider-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.slider-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.slider-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  font-family: var(--font-mono);
+}
+
+.slider-track-container {
+  width: 100%;
+}
+
+.cad-range-input {
+  width: 100%;
+  height: 6px;
+  background: var(--border-color);
+  border-radius: 3px;
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.cad-range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--accent-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.cad-range-input::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.slider-presets {
+  display: flex;
+  gap: 6px;
+  justify-content: space-between;
+}
+
+.preset-btn {
+  flex: 1;
+  padding: 4px 0;
+  background: var(--surface-input);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.preset-btn:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background: var(--accent-subtle);
+}
+
+.preset-btn.active {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #FFFFFF;
+}

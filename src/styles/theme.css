@@ -1,0 +1,143 @@
+:root,
+[data-theme="dark"],
+.dark {
+  /* Dark Mode Semantic Color System */
+  --bg-primary: #0B1118;
+  --bg-secondary: #101923;
+  --surface-card: #151F2B;
+  --surface-elevated: #1B2735;
+  --surface-input: #0E1620;
+  
+  --border-color: #263545;
+  --border-hover: #3A5268;
+  
+  --text-primary: #F3F7FA;
+  --text-secondary: #A9B8C7;
+  --text-muted: #718294;
+  
+  --accent-primary: #00B8D9;
+  --accent-secondary: #1687A7;
+  --accent-hover: #009CB8;
+  --accent-subtle: rgba(0, 184, 217, 0.12);
+  --accent-border: rgba(0, 184, 217, 0.35);
+
+  --color-success: #22A06B;
+  --color-warning: #D99A2B;
+  --color-danger: #D94A4A;
+  --color-info: #4D9DE0;
+
+  --viewport-bg: #0B1118;
+  --viewport-grid-cell: #1E2B3A;
+  --viewport-grid-section: #2D3F54;
+
+  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-elevated: 0 8px 24px rgba(0, 0, 0, 0.45);
+
+  /* Legacy Variable Mapping for Dark Mode */
+  --bg-darker: var(--bg-primary);
+  --bg-dark: var(--bg-secondary);
+  --bg-card: var(--surface-card);
+  --bg-card-hover: var(--surface-elevated);
+  --bg-panel: var(--surface-card);
+  --bg-hud: rgba(16, 25, 35, 0.92);
+
+  --accent-cyan: var(--accent-primary);
+  --accent-cyan-glow: rgba(0, 184, 217, 0.2);
+  --accent-cyan-subtle: var(--accent-subtle);
+  --accent-blue: var(--accent-secondary);
+  --accent-red: var(--color-danger);
+  --accent-red-glow: rgba(217, 74, 74, 0.2);
+  --accent-orange: var(--color-warning);
+  --accent-green: var(--color-success);
+  
+  --text-main: var(--text-primary);
+  --text-dim: var(--text-muted);
+  --text-bright: var(--text-primary);
+
+  --border-subtle: var(--border-color);
+  --border-cad: var(--border-color);
+  --border-cad-active: var(--accent-primary);
+  --border-red: rgba(217, 74, 74, 0.4);
+
+  --shadow-cad: var(--shadow-card);
+  --glow-cyan: 0 0 12px rgba(0, 184, 217, 0.2);
+  --glow-cyan-lg: 0 0 24px rgba(0, 184, 217, 0.3);
+  --glow-red: 0 0 12px rgba(217, 74, 74, 0.2);
+
+  /* Typography & Layout */
+  --font-heading: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.4s ease;
+  --theme-transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+[data-theme="light"],
+.light {
+  /* Light Mode Semantic Color System */
+  --bg-primary: #F4F7FA;
+  --bg-secondary: #EAF0F4;
+  --surface-card: #FFFFFF;
+  --surface-elevated: #FFFFFF;
+  --surface-input: #F8FAFC;
+  
+  --border-color: #D5DEE7;
+  --border-hover: #E7EEF4;
+  
+  --text-primary: #17212B;
+  --text-secondary: #526170;
+  --text-muted: #7A8794;
+  
+  --accent-primary: #008EAA;
+  --accent-secondary: #087E99;
+  --accent-hover: #007A93;
+  --accent-subtle: rgba(0, 142, 170, 0.1);
+  --accent-border: rgba(0, 142, 170, 0.3);
+
+  --color-success: #22A06B;
+  --color-warning: #D99A2B;
+  --color-danger: #D94A4A;
+  --color-info: #4D9DE0;
+
+  --viewport-bg: #EAF0F4;
+  --viewport-grid-cell: #CBD5E1;
+  --viewport-grid-section: #94A3B8;
+
+  --shadow-card: 0 2px 12px rgba(23, 33, 43, 0.06);
+  --shadow-elevated: 0 6px 20px rgba(23, 33, 43, 0.09);
+
+  /* Legacy Variable Mapping for Light Mode */
+  --bg-darker: var(--bg-primary);
+  --bg-dark: var(--bg-secondary);
+  --bg-card: var(--surface-card);
+  --bg-card-hover: var(--surface-elevated);
+  --bg-panel: var(--surface-card);
+  --bg-hud: rgba(234, 240, 244, 0.94);
+
+  --accent-cyan: var(--accent-primary);
+  --accent-cyan-glow: rgba(0, 142, 170, 0.15);
+  --accent-cyan-subtle: var(--accent-subtle);
+  --accent-blue: var(--accent-secondary);
+  --accent-red: var(--color-danger);
+  --accent-red-glow: rgba(217, 74, 74, 0.15);
+  --accent-orange: var(--color-warning);
+  --accent-green: var(--color-success);
+
+  --text-main: var(--text-primary);
+  --text-dim: var(--text-muted);
+  --text-bright: var(--text-primary);
+
+  --border-subtle: var(--border-color);
+  --border-cad: var(--border-color);
+  --border-cad-active: var(--accent-primary);
+  --border-red: rgba(217, 74, 74, 0.3);
+
+  --shadow-cad: var(--shadow-card);
+  --glow-cyan: 0 2px 10px rgba(0, 142, 170, 0.15);
+  --glow-cyan-lg: 0 4px 16px rgba(0, 142, 170, 0.2);
+  --glow-red: 0 2px 10px rgba(217, 74, 74, 0.15);
+}

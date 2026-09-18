@@ -1,0 +1,128 @@
+.compare-selector-panel {
+  padding: 20px;
+  background: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: var(--shadow-card);
+  transition: var(--theme-transition);
+}
+
+.selector-title {
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+}
+
+.selector-chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--surface-input);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.chip-btn:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background: var(--accent-subtle);
+}
+
+.chip-btn.selected {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.matrix-table-container {
+  overflow-x: auto;
+  background: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: var(--shadow-card);
+  transition: var(--theme-transition);
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.compare-table th, .compare-table td {
+  padding: 16px 20px;
+  border: 1px solid var(--border-color);
+  vertical-align: top;
+}
+
+.field-column {
+  width: 220px;
+  background: var(--surface-input);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+.engine-column {
+  background: var(--surface-card);
+  min-width: 260px;
+}
+
+.th-engine-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.th-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.btn-th-explore {
+  padding: 6px 10px;
+  font-size: 0.75rem;
+  margin-top: 4px;
+}
+
+.field-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--surface-input);
+  color: var(--text-primary);
+}
+
+.field-value {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.matrix-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+}
