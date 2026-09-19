@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import SectionHeader from '../components/SectionHeader/SectionHeader';
 import { ENGINE_PARTS_DATA } from '../data/engineParts';
-import { Search, Cpu, Box, AlertTriangle, Layers, Info, ExternalLink } from 'lucide-react';
+import { Search, Cpu, Box, AlertTriangle, Layers, Info, ChevronRight } from 'lucide-react';
 import './PartsLibrary.css';
 
 export default function PartsLibrary() {
@@ -44,14 +44,14 @@ export default function PartsLibrary() {
   });
 
   return (
-    <div className="page-container">
+    <div className="page-container parts-library-page">
       <SectionHeader
         badge="MECHANICAL COMPONENTS"
         title="PARTS LIBRARY & TELEMETRY"
-        subtitle="Searchable database of internal combustion engine components, materials, working principles, and common failure modes."
+        subtitle="Searchable database of internal combustion engine components, 3D visualizations, materials, working principles, and common failure modes."
       />
 
-      {/* Filter Tabs & Search Header */}
+      {/* Filter Tabs & Search Bar */}
       <div className="parts-filter-bar cad-panel">
         <div className="parts-category-tabs">
           {categories.slice(0, 8).map((cat) => (
@@ -87,10 +87,18 @@ export default function PartsLibrary() {
         </div>
       </div>
 
-      {/* Parts Grid */}
+      {/* Parts Grid: 3/4 column desktop, 2 col tablet, 1 col mobile */}
       <div className="parts-grid">
         {filteredParts.map((part) => (
           <div key={part.id} className="part-card cad-panel">
+            {/* Visual 3D Component Header Badge Box */}
+            <div className="part-card-thumb" onClick={() => navigate(`/parts/${part.id}`)}>
+              <div className="thumb-icon-wrapper">
+                <Box size={28} className="text-cyan" />
+              </div>
+              <span className="thumb-badge font-mono">3D COMPONENT</span>
+            </div>
+
             <div className="part-card-header">
               <span className="badge-cad">{part.category}</span>
               <h3 className="part-card-title">{part.name}</h3>
@@ -124,7 +132,7 @@ export default function PartsLibrary() {
                     <AlertTriangle size={14} /> FAILURE MODES
                   </span>
                   <ul className="part-failure-list">
-                    {part.failureModes.map((fm, idx) => (
+                    {part.failureModes.slice(0, 2).map((fm, idx) => (
                       <li key={idx}><AlertTriangle size={10} className="text-red" /> {fm}</li>
                     ))}
                   </ul>
@@ -134,11 +142,11 @@ export default function PartsLibrary() {
 
             <div className="part-card-footer">
               <button 
-                className="btn-cad btn-cad-solid w-full"
-                onClick={() => navigate(`/explorer?engine=v8-ohv`)}
+                className="btn-cad btn-cad-solid w-full view-part-btn"
+                onClick={() => navigate(`/parts/${part.id}`)}
               >
-                <Box size={14} />
-                <span>VIEW IN AUTO SPECTRA</span>
+                <span>VIEW PART</span>
+                <ChevronRight size={16} />
               </button>
             </div>
           </div>

@@ -17,6 +17,7 @@
   align-items: center;
   gap: 8px;
   overflow-x: auto;
+  padding-bottom: 4px;
 }
 
 .parts-tab-btn {
@@ -73,7 +74,7 @@
 .parts-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 24px;
 }
 
 .part-card {
@@ -93,8 +94,46 @@
   transform: translateY(-4px);
 }
 
+.part-card-thumb {
+  height: 120px;
+  background: var(--viewport-bg);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  position: relative;
+  cursor: pointer;
+  transition: var(--theme-transition);
+}
+
+.thumb-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  background: var(--surface-card);
+  border: 1px solid var(--accent-border);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-fast);
+}
+
+.part-card:hover .thumb-icon-wrapper {
+  transform: scale(1.08);
+  border-color: var(--accent-primary);
+}
+
+.thumb-badge {
+  font-size: 0.65rem;
+  color: var(--accent-primary);
+  letter-spacing: 0.08em;
+}
+
 .part-card-header {
-  padding: 18px 20px;
+  padding: 16px 20px;
   background: var(--surface-card);
   border-bottom: 1px solid var(--border-color);
   display: flex;
@@ -103,16 +142,17 @@
 }
 
 .part-card-title {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--text-primary);
   font-family: var(--font-heading);
+  font-weight: 700;
 }
 
 .part-card-body {
-  padding: 20px;
+  padding: 18px 20px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
   flex: 1;
 }
 
@@ -134,9 +174,9 @@
 }
 
 .part-section-text {
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   color: var(--text-primary);
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 .part-failure-list {
@@ -155,11 +195,21 @@
 }
 
 .part-card-footer {
-  padding: 16px 20px;
+  padding: 14px 20px;
   background: var(--surface-card);
   border-top: 1px solid var(--border-color);
 }
 
+.view-part-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  font-size: 0.85rem;
+}
+
+/* Responsive Grid Breakpoints */
 @media (max-width: 1200px) {
   .parts-grid {
     grid-template-columns: repeat(2, 1fr);

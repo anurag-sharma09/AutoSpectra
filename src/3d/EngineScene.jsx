@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, Suspense } from 'react';
+import React, { useRef, useEffect, useState, Suspense } from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
 import { OrbitControls, Grid, ContactShadows, Environment } from '@react-three/drei';
 import * as THREE from 'three';
@@ -15,30 +15,78 @@ import SingleCylinderEngine from './SingleCylinderEngine';
 import OpposedPistonEngine from './OpposedPistonEngine';
 import EngineLabels from './EngineLabels';
 
-// ── Camera presets ──────────────────────────────────────────
-const CAMERA_PRESETS = {
-  Reset:      [3.5, 2.8, 4.5],
-  Front:      [0, 0.5, 7],
-  Rear:       [0, 0.5, -7],
-  Left:       [-7, 0.5, 0],
-  Right:      [7, 0.5, 0],
-  Top:        [0, 8, 0.01],
-  Bottom:     [0, -6, 0.01],
-  Isometric:  [4, 4, 4],
+// ── Preset Direction Vectors (Normalized) ───────────────────
+const PRESET_DIRECTIONS = {
+  Reset:      new THREE.Vector3(0.68, 0.48, 0.88).normalize(),
+  Isometric:  new THREE.Vector3(1, 1, 1).normalize(),
+  Front:      new THREE.Vector3(0, 0.12, 1).normalize(),
+  Rear:       new THREE.Vector3(0, 0.12, -1).normalize(),
+  Left:       new THREE.Vector3(-1, 0.12, 0).normalize(),
+  Right:      new THREE.Vector3(1, 0.12, 0).normalize(),
+  Top:        new THREE.Vector3(0, 1, 0.001).normalize(),
+  Bottom:     new THREE.Vector3(0, -1, 0.001).normalize(),
 };
 
-// ── Camera controller ───────────────────────────────────────
-function CameraController({ cameraView }) {
+// ── Dynamic Bounding-Box Auto-Fit Camera Controller ─────────
+function AutoFitCameraController({ engineId, cameraView, resetSignal, engineGroupRef }) {
   const controlsRef = useRef();
-  const { camera } = useThree();
+  const { camera, size } = useThree();
+
+  const fitCameraToEngine = () => {
+    if (!engineGroupRef.current || !controlsRef.current) return;
+
+    // 1. Calculate Bounding Box of active engine model group
+    const box = new THREE.Box3().setFromObject(engineGroupRef.current);
+    if (box.isEmpty()) return;
+
+    // 2. Get Visual Center and Bounding Radius
+    const center = new THREE.Vector3();
+    box.getCenter(center);
+    const boxSize = new THREE.Vector3();
+    box.getSize(boxSize);
+
+    const sphere = box.getBoundingSphere(new THREE.Sphere());
+    const radius = sphere.radius > 0 ? sphere.radius : Math.max(boxSize.x, boxSize.y, boxSize.z) / 2;
+
+    // 3. Compute Distance based on Camera FOV and Aspect Ratio
+    const fovRad = (camera.fov * Math.PI) / 180;
+    const aspect = size.width / (size.height || 1);
+
+    // Distance required vertically
+    const distanceV = radius / Math.sin(fovRad / 2);
+    // Distance required horizontally (crucial for vertical mobile screens aspect < 1.0)
+    const distanceH = radius / Math.sin(Math.atan(Math.tan(fovRad / 2) * aspect));
+
+    let distance = Math.max(distanceV, distanceH);
+
+    // 4. Dynamic Responsive Screen Multipliers
+    const isMobile = size.width <= 768;
+    const isTablet = size.width > 768 && size.width <= 1024;
+    const paddingFactor = isMobile ? 1.45 : isTablet ? 1.25 : 1.12;
+
+    distance *= paddingFactor;
+
+    // 5. Calculate Camera Target Position & Set Controls Target to Engine Center
+    const dir = PRESET_DIRECTIONS[cameraView] || PRESET_DIRECTIONS.Reset;
+    const targetPos = center.clone().add(dir.clone().multiplyScalar(distance));
+
+    camera.position.copy(targetPos);
+    controlsRef.current.target.copy(center);
+
+    camera.near = Math.max(0.01, distance / 30);
+    camera.far = distance * 30;
+    camera.updateProjectionMatrix();
+
+    controlsRef.current.update();
+  };
 
   useEffect(() => {
-    if (!controlsRef.current) return;
-    const pos = CAMERA_PRESETS[cameraView] || CAMERA_PRESETS.Reset;
-    camera.position.set(...pos);
-    controlsRef.current.target.set(0, 0.3, 0);
-    controlsRef.current.update();
-  }, [cameraView, camera]);
+    // Small timeout ensures 3D geometry hierarchy is mounted and populated
+    const timer = setTimeout(() => {
+      fitCameraToEngine();
+    }, 50);
+    return () => clearTimeout(timer);
+  }, [engineId, cameraView, resetSignal, size.width, size.height]);
 
   return (
     <OrbitControls
@@ -49,8 +97,8 @@ function CameraController({ cameraView }) {
       rotateSpeed={0.75}
       zoomSpeed={0.9}
       panSpeed={0.7}
-      minDistance={1.8}
-      maxDistance={16}
+      minDistance={1.2}
+      maxDistance={40}
       mouseButtons={{
         LEFT: THREE.MOUSE.ROTATE,
         MIDDLE: THREE.MOUSE.DOLLY,
@@ -60,12 +108,14 @@ function CameraController({ cameraView }) {
   );
 }
 
-// ── Scene content ───────────────────────────────────────────
+// ── Scene Content ───────────────────────────────────────────
 function SceneContent({
   engineId, explosion, selectedPartId, onSelectPart,
   isCutaway, isAnimated, animationSpeed, cameraView, showLabels,
   onCrankUpdate, resetSignal, theme,
 }) {
+  const engineGroupRef = useRef();
+
   const renderEngine = () => {
     const props = {
       explosion,
@@ -148,9 +198,16 @@ function SceneContent({
         color={shadowColor}
       />
 
-      <CameraController cameraView={cameraView} />
+      <AutoFitCameraController
+        engineId={engineId}
+        cameraView={cameraView}
+        resetSignal={resetSignal}
+        engineGroupRef={engineGroupRef}
+      />
 
-      {renderEngine()}
+      <group ref={engineGroupRef}>
+        {renderEngine()}
+      </group>
 
       {showLabels && (
         <EngineLabels engineId={engineId} explosion={explosion} selectedPartId={selectedPartId} />
@@ -159,7 +216,7 @@ function SceneContent({
   );
 }
 
-// ── Main export ─────────────────────────────────────────────
+// ── Main Export ─────────────────────────────────────────────
 export default function EngineScene({
   engineId = 'v8-ohv',
   explosion = 0,
@@ -174,20 +231,41 @@ export default function EngineScene({
   resetSignal = 0,
 }) {
   const { theme } = useTheme();
+  const wrapperRef = useRef();
+  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
+
+  // Container ResizeObserver for responsive WebGL canvas refitting
+  useEffect(() => {
+    if (!wrapperRef.current) return;
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.contentRect) {
+          setContainerSize({
+            width: entry.contentRect.width,
+            height: entry.contentRect.height,
+          });
+        }
+      }
+    });
+    observer.observe(wrapperRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div 
+      ref={wrapperRef}
       className="engine-scene-wrapper"
       style={{ 
         width: '100%', 
         height: '100%', 
         backgroundColor: 'var(--viewport-bg)', 
         position: 'relative',
+        touchAction: 'none', // Capture 3D gestures without breaking page scrolling
         transition: 'background-color 0.25s ease'
       }}
     >
       <Canvas
-        camera={{ position: CAMERA_PRESETS.Reset, fov: 44, near: 0.05, far: 120 }}
+        camera={{ position: [3.5, 2.8, 4.5], fov: 44, near: 0.05, far: 120 }}
         gl={{
           antialias: true,
           toneMapping: THREE.ACESFilmicToneMapping,

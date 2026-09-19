@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import EngineTypes from './pages/EngineTypes';
 import Explorer3D from './pages/Explorer3D';
 import PartsLibrary from './pages/PartsLibrary';
+import PartDetail from './pages/PartDetail';
 import Knowledge from './pages/Knowledge';
 import RepairLab from './pages/RepairLab';
 import Compare from './pages/Compare';
@@ -74,6 +75,7 @@ function Layout() {
             <Route path="/engine-types" element={<EngineTypes />} />
             <Route path="/explorer" element={<Explorer3D />} />
             <Route path="/parts-library" element={<PartsLibrary />} />
+            <Route path="/parts/:partId" element={<PartDetail />} />
             <Route path="/knowledge" element={<Knowledge />} />
             <Route path="/repair-lab" element={<RepairLab />} />
             <Route path="/compare" element={<Compare />} />

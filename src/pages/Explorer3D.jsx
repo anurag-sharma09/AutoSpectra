@@ -13,6 +13,7 @@ import './Explorer3D.css';
 export default function Explorer3D() {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialEngineId = searchParams.get('engine') || 'v8-ohv';
+  const initialPartId = searchParams.get('part');
 
   const [activeEngineId, setActiveEngineId] = useState(initialEngineId);
   const [explosion, setExplosion] = useState(0);
@@ -24,14 +25,20 @@ export default function Explorer3D() {
   const [crankAngle, setCrankAngle] = useState(0);
   const [resetSignal, setResetSignal] = useState(0);
   const [cameraView, setCameraView] = useState('Reset');
-  const [selectedPart, setSelectedPart] = useState(null);
+  const [selectedPart, setSelectedPart] = useState(
+    initialPartId ? { id: initialPartId, name: initialPartId.replace(/-/g, ' ').toUpperCase() } : null
+  );
   const [showLabels, setShowLabels] = useState(false);
 
-  // Sync URL search param if engine changes
+  // Sync URL search params if engine or part changes
   useEffect(() => {
     const paramEngine = searchParams.get('engine');
+    const paramPart = searchParams.get('part');
     if (paramEngine && paramEngine !== activeEngineId) {
       setActiveEngineId(paramEngine);
+    }
+    if (paramPart) {
+      setSelectedPart({ id: paramPart, name: paramPart.replace(/-/g, ' ').toUpperCase() });
     }
   }, [searchParams]);
 
@@ -133,9 +140,25 @@ export default function Explorer3D() {
         </div>
       </header>
 
+      {/* Horizontal Engine Selector Bar for Mobile/Tablet */}
+      <div className="explorer-mobile-architecture-bar cad-panel">
+        <span className="sidebar-section-title font-mono">ARCHITECTURES:</span>
+        <div className="horizontal-engine-scroll">
+          {ENGINES_DATA.map((eng) => (
+            <button
+              key={eng.id}
+              className={`arch-scroll-item ${activeEngineId === eng.id ? 'active' : ''}`}
+              onClick={() => handleSelectEngine(eng.id)}
+            >
+              <span>{eng.name}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Main 3D Canvas Container */}
       <div className="explorer-main-viewport">
-        {/* Left Side: Engine Quick Switch Drawer */}
+        {/* Left Side: Desktop Engine Quick Switch Drawer */}
         <aside className="explorer-left-sidebar cad-panel">
           <span className="sidebar-section-title font-mono">ARCHITECTURES</span>
           <div className="engine-quick-list">

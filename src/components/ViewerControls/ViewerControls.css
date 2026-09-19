@@ -8,6 +8,8 @@
   -webkit-backdrop-filter: blur(12px);
   border-top: 1px solid var(--border-color);
   gap: 20px;
+  max-width: 100vw;
+  box-sizing: border-box;
   transition: var(--theme-transition);
 }
 
@@ -15,6 +17,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  max-width: 100%;
 }
 
 .control-group-title {
@@ -23,6 +26,7 @@
   color: var(--accent-primary);
   letter-spacing: 0.08em;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .btn-segmented {
@@ -32,13 +36,17 @@
   border-radius: 6px;
   padding: 3px;
   gap: 3px;
+  overflow-x: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
 }
 
 .btn-seg {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 12px;
+  padding: 8px 12px;
   background: transparent;
   border: 1px solid transparent;
   color: var(--text-secondary);
@@ -47,6 +55,8 @@
   font-weight: 500;
   border-radius: 4px;
   cursor: pointer;
+  white-space: nowrap;
+  min-height: 44px; /* Touch target minimum height */
   transition: all var(--transition-fast);
 }
 
@@ -68,13 +78,17 @@
   display: flex;
   gap: 4px;
   flex-wrap: wrap;
+  overflow-x: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
 }
 
 .btn-cam {
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 5px 9px;
+  padding: 6px 10px;
   background: var(--surface-input);
   border: 1px solid var(--border-color);
   color: var(--text-secondary);
@@ -82,6 +96,8 @@
   font-size: 0.75rem;
   border-radius: 4px;
   cursor: pointer;
+  white-space: nowrap;
+  min-height: 44px; /* Touch target minimum height */
   transition: all var(--transition-fast);
 }
 
@@ -107,7 +123,21 @@
 @media (max-width: 900px) {
   .viewer-controls-bar {
     flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 10px 12px;
+  }
+  .control-group {
+    flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 6px;
+    width: 100%;
+  }
+  .btn-segmented,
+  .camera-btn-grid {
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
   }
 }
