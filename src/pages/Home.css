@@ -55,7 +55,7 @@
 }
 
 .hero-3d-preview {
-  height: 460px;
+  height: clamp(340px, 48vh, 560px);
   position: relative;
   border-radius: 8px;
   overflow: hidden;
@@ -204,6 +204,9 @@
   .hero-section {
     grid-template-columns: 1fr;
   }
+  .hero-3d-preview {
+    height: clamp(320px, 60vw, 480px);
+  }
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -219,10 +222,19 @@
   .hero-headline {
     font-size: 2.2rem;
   }
+  .hero-3d-preview {
+    height: clamp(300px, 75vw, 420px);
+  }
   .features-grid, .stats-grid {
     grid-template-columns: 1fr;
   }
   .hero-cta-group {
     flex-direction: column;
+  }
+  .preview-instructions {
+    font-size: 0.62rem;
+    padding: 3px 8px;
+    bottom: 10px;
+    right: 10px;
   }
 }

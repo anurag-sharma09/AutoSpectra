@@ -1,7 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
 import { 
   Box, 
   Layers, 
@@ -10,11 +8,10 @@ import {
   BookOpen, 
   Calculator, 
   ArrowRight,
-  ShieldCheck,
   Zap,
   Activity
 } from 'lucide-react';
-import V8Engine from '../3d/V8Engine';
+import HomeEngineViewer from '../components/HomeEngineViewer/HomeEngineViewer';
 import './Home.css';
 
 export default function Home() {
@@ -94,19 +91,13 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Hero 3D Mini Canvas Preview */}
+        {/* Hero 3D Preview — Real Blender GLB Model */}
         <div className="hero-3d-preview cad-panel cad-panel-glow">
           <div className="preview-canvas-badge">
             <Activity size={14} className="text-cyan" />
             <span className="font-mono text-cyan">LIVE V8 OHV 3D ENGINE PREVIEW</span>
           </div>
-          <Canvas camera={{ position: [3, 2, 3], fov: 45 }}>
-            <ambientLight intensity={0.9} />
-            <directionalLight position={[10, 10, 10]} intensity={1.5} />
-            <directionalLight position={[-10, -10, -10]} intensity={0.5} color="#00f0ff" />
-            <OrbitControls autoRotate autoRotateSpeed={1.5} enableZoom={false} />
-            <V8Engine isAnimated={true} animationSpeed={0.5} />
-          </Canvas>
+          <HomeEngineViewer />
           <div className="preview-instructions font-mono">
             <span>DRAG TO ROTATE 3D ENGINE MODEL</span>
           </div>

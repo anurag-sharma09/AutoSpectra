@@ -7,6 +7,8 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
   transition: var(--theme-transition);
 }
 
@@ -22,6 +24,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
+  flex-wrap: wrap;
 }
 
 .kinematic-title {
@@ -56,8 +59,9 @@
 .kinematic-controls-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 14px;
+  flex-wrap: wrap;
 }
 
 .speed-slider-group {
@@ -65,7 +69,8 @@
   align-items: center;
   gap: 12px;
   flex: 1;
-  max-width: 380px;
+  min-width: 200px;
+  max-width: 420px;
 }
 
 .speed-label {
@@ -80,6 +85,7 @@
 .speed-range {
   flex: 1;
   accent-color: var(--accent-primary);
+  min-width: 80px;
 }
 
 .cycle-stages-grid {
@@ -121,12 +127,35 @@
   opacity: 0.9;
 }
 
+@media (max-width: 900px) {
+  .kinematic-controls-panel {
+    padding: 12px 14px;
+  }
+  .speed-slider-group {
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   .kinematic-controls-row {
     flex-direction: column;
     align-items: stretch;
   }
+  .speed-slider-group {
+    min-width: 0;
+    max-width: 100%;
+  }
   .cycle-stages-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .cycle-stages-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .stage-name {
+    font-size: 0.7rem;
   }
 }

@@ -1,0 +1,96 @@
+/* HomeEngineViewer.css
+ * Styles for the imperative Three.js home-hero GLB canvas mount and loading UI
+ */
+
+/* ── Mount (fills its parent .hero-3d-preview container) ── */
+.hev-mount {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: inherit;
+  touch-action: none;   /* Let OrbitControls handle all gestures */
+}
+
+/* canvas injected by Three.js renderer */
+.hev-mount canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: inherit;
+}
+
+/* ── Loading / Error Overlay ── */
+.hev-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--viewport-bg, #0a0f1a);
+  z-index: 20;
+  border-radius: inherit;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.hev-loading[style*="display: none"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hev-load-icon {
+  font-size: 2.2rem;
+  animation: hev-spin 2s linear infinite;
+  color: var(--accent-primary, #2563eb);
+}
+
+.hev-error .hev-load-icon {
+  animation: none;
+  color: #e55;
+}
+
+@keyframes hev-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.hev-load-text {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: var(--accent-primary, #2563eb);
+  font-weight: 700;
+}
+
+.hev-load-sub {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  color: var(--text-muted, #6b7280);
+  letter-spacing: 0.06em;
+}
+
+/* Animated progress bar */
+.hev-load-bar {
+  width: 140px;
+  height: 3px;
+  background: var(--border-color, #1e2b3a);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.hev-load-bar-inner {
+  height: 100%;
+  width: 40%;
+  background: var(--accent-primary, #2563eb);
+  border-radius: 2px;
+  animation: hev-progress 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes hev-progress {
+  from { margin-left: -40%; }
+  to   { margin-left: 100%; }
+}
